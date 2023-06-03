@@ -1,6 +1,7 @@
 package com.mochilas.demoMochilas.service;
 
 import com.mochilas.demoMochilas.entity.Category;
+import com.mochilas.demoMochilas.exception.EntityNotFundException;
 import com.mochilas.demoMochilas.repository.CategoryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
@@ -10,9 +11,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CategoryServiceImpl implements  CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
-   private CategoryRepository categoryRepository;
+  private CategoryRepository categoryRepository;
+
   @Override
   public List<Category> getAll() {
     return categoryRepository.findAll();
@@ -20,6 +22,7 @@ public class CategoryServiceImpl implements  CategoryService{
 
   @Override
   public Category getById(UUID id) {
-    return categoryRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Entidad no encontrada weee"));
+    return categoryRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFundException("Category", id));
   }
 }
