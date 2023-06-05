@@ -1,9 +1,9 @@
 package com.mochilas.demoMochilas.service;
 
 import com.mochilas.demoMochilas.entity.Category;
-import com.mochilas.demoMochilas.exception.EntityNotFundException;
+import com.mochilas.demoMochilas.exception.EntityNotFoundException;
 import com.mochilas.demoMochilas.repository.CategoryRepository;
-import jakarta.persistence.EntityNotFoundException;
+
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -23,6 +23,6 @@ public class CategoryServiceImpl implements CategoryService {
   @Override
   public Category getById(UUID id) {
     return categoryRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFundException("Category", id));
+        .orElseThrow(() -> new EntityNotFoundException("Category", id));
   }
 }

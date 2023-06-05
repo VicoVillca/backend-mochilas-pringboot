@@ -16,4 +16,14 @@ public class ProductMapper {
     product.setActive(productDto.getActive());
     return product;
   }
+
+  public Product toDTOUpdate(Product product, ProductDto productDto){
+    product.setName(productDto.getName());
+    product.setDescription(productDto.getDescription());
+    product.setImage_url(productDto.getImage_url());
+    product.setPrice(productDto.getPrice());
+    product.setStock(productDto.getStock());
+    product.setActive(productDto.getActive());
+    return product;
+  }
 }
