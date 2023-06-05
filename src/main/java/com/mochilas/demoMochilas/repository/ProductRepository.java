@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, UUID> {
   @Query(value = "select * from products where category_id= ?1", nativeQuery = true)
   List<Product> ProductsByCategory(UUID id);
-
+  @Query(value = "select * from products where category_id= ?1", nativeQuery = true)
   List<Product> findAllByCategory(UUID id, Pageable pageable);
 }

@@ -42,21 +42,25 @@ public class ProductController {
   public ResponseEntity<Product> Insert(@RequestBody ProductDto productDto) {
     return ResponseEntity.status(HttpStatus.CREATED).body(productService.Insert(productDto));
   }
+
   @PutMapping("/{id}")
-  public  ResponseEntity<Product>update(@PathVariable UUID id, @RequestBody ProductDto productDto){
-    return ResponseEntity.status(HttpStatus.OK).body(productService.Update(id,productDto));
+  public ResponseEntity<Product> update(@PathVariable UUID id, @RequestBody ProductDto productDto) {
+    return ResponseEntity.status(HttpStatus.OK).body(productService.Update(id, productDto));
   }
+
   @GetMapping("/category/{id}")
-  public ResponseEntity<List<Product>>getProductsByCategory(@PathVariable UUID id){
+  public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable UUID id) {
 
     return ResponseEntity.status(HttpStatus.OK).body(productService.ProductsByCategory(id));
   }
 
   @GetMapping("/category_page/{id}")
-  public ResponseEntity<List<Product>>getProductsByCategory_page(@PathVariable UUID id, @RequestParam int page,@RequestParam int size){
+  public ResponseEntity<List<Product>> getProductsByCategory_page(@PathVariable UUID id,
+      @RequestParam int page, @RequestParam int size) {
     Pageable pageable = PageRequest.of(page, size);
 
-    return ResponseEntity.status(HttpStatus.OK).body(productService.ProductsByCategory(id, pageable));
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(productService.ProductsByCategory(id, pageable));
   }
 
 }
